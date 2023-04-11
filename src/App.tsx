@@ -1,8 +1,52 @@
-import Navbar from './components/Navbar'
-import './styles/index.css'
+import Navbar from './components/Navbar';
+import './styles/index.css';
+import CardGrid from './components/Showp';
+const App: React.FC = () => {
+  const products = [
+    {
+      title: 'Product 1',
+      image: 'https://source.unsplash.com/random/400x200',
+      description: 'Description of product 1',
+      price: 12.99,
+    },
+    {
+      title: 'Product 2',
+      image: 'https://source.unsplash.com/random/400x200',
+      description: 'Description of product 2',
+      price: 19.99,
+    },
+    {
+      title: 'Product 3',
+      image: 'https://source.unsplash.com/random/400x200',
+      description: 'Description of product 3',
+      price: 7.99,
+    },
+    {
+      title: 'Product 4',
+      image: 'https://source.unsplash.com/random/400x200',
+      description: 'Description of product 3',
+      price: 11.92,
+    },
+    {
+      title: 'Product 5',
+      image: 'https://source.unsplash.com/random/400x200',
+      description: 'Description of product 3',
+      price: 11.92,
+    }
+  ];
 
-function App() {
-  return <Navbar />
-}
+  return (
+    <>
+    <Navbar/>
+    
+    <div className="container mx-auto py-8 flex items-center">
+      <CardGrid products={products} />
+    </div>
+    
+    </>
+  );
+};
+
+
 
 export default App
