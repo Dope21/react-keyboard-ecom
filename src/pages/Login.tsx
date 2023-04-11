@@ -11,7 +11,7 @@ const Login = () => {
       <Input type="password" name="password" />
       <InputBtn text="Sign In" />
       <div className="flex justify-between">
-        <a href="/">Create account</a>
+        <a href="/register">Create account</a>
         <a href="/">Forgot password?</a>
       </div>
     </Form>
