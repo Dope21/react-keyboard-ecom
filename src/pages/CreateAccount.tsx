@@ -10,7 +10,7 @@ const CreateAccount = () => {
       <Input type="text" name="firstname" />
       <Input type="text" name="lastname" />
       <Input type="email" name="email" />
-      <Input type="password" name="email" />
+      <Input type="password" name="password" />
       <InputBtn text="Create" />
     </Form>
   )
