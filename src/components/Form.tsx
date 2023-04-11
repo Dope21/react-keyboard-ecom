@@ -6,8 +6,10 @@ type FormProps = {
 
 const Form = ({ children }: FormProps) => {
   return (
-    <div className="grid justify-center pt-16">
-      <form className="w-96 flex flex-col gap-8">{children}</form>
+    <div className="pt-16 px-4">
+      <form className="w-full max-w-sm flex flex-col gap-8 mx-auto">
+        {children}
+      </form>
     </div>
   )
 }
