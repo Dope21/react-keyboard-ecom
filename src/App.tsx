@@ -5,7 +5,7 @@ import Login from './pages/Login'
 import CreateAccount from './pages/CreateAccount'
 import Home from './pages/Home'
 import './styles/index.css'
-import Products from './pages/Products'
+import CardGrid from './pages/Showp'
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
             <Route path="/login" Component={Login} />
             <Route path="/register" Component={CreateAccount} />
             <Route path="/" Component={Home} />
+            <Route path="/products" Component={CardGrid} />
           </Routes>
         </Router>
       </Container>
