@@ -1,15 +1,14 @@
-import { BsBag } from 'react-icons/bs'
 import { TfiSearch, TfiUser } from 'react-icons/tfi'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import Cart from './Cart'
 const Navbar = () => {
   return (
     <>
-      <header>
+      <header className="fixed top-0 z-50 w-full">
         <div className="bg-black text-white text-center py-1 px-5 text-sm md:text-base">
           All the products will be shipped within 4 business days.
         </div>
-        <nav className="fixed w-full z-50 bg-white border">
+        <nav className="bg-white border-b">
           <div className="px-4 md:px-10 mx-auto max-w-7xl flex items-center justify-between py-4 md:py-8">
             <div className="w-20 md:w-auto">
               <img
