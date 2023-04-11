@@ -19,11 +19,11 @@ interface ProductInfo {
         <div className="p-4">
           <p className="mt-2 text-gray-600">{description}</p>
           <p className="mt-2 text-gray-800 font-medium">${price.toFixed(2)}</p>
-          
+          <a href="">
           <button className="mt-4 block w-full rounded-lg py-2 px-3 bg-blue-500 text-white font-medium hover:bg-blue-600">
             Detail
           </button>
-          
+          </a>
         </div>
       </div>
     );
