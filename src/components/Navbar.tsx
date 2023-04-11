@@ -1,7 +1,7 @@
 import { BsBag } from 'react-icons/bs'
 import { TfiSearch, TfiUser } from 'react-icons/tfi'
 import { RxHamburgerMenu } from 'react-icons/rx'
-import Cart from './Cart';
+import Cart from './Cart'
 const Navbar = () => {
   return (
     <>
@@ -43,9 +43,9 @@ const Navbar = () => {
               <button>
                 <TfiSearch size={25} />
               </button>
-              <button>
-              <Cart />
-              </button>
+              <div>
+                <Cart />
+              </div>
               <button className="md:hidden">
                 <RxHamburgerMenu size={25} />
               </button>
