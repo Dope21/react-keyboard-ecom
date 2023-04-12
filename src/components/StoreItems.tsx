@@ -25,13 +25,9 @@ export function StoreItems({id,title, image, description, price}: StoreItemProps
         </div>
         <p className="text-sm text-gray-600 mb-2">{description}</p>
         <div className="flex justify-center">
-         {quantity === 0 ? (<Button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"  onClick={()=>increaseQuantity(id)} >
-           + Add To Cart
-          </Button>) : <div className="d-flex align-item-center" style={{gap: ".5rem"}}>
-            <div className="d-flex align-items-center justify-content-center" style={{gap: ".5rem"}}>
-            </div>
-
-          </div> }
+         <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"  onClick={()=>increaseQuantity(id)} >
+           Add To Cart
+          </Button>
         </div>
       </Card.Body>
     </Card>
