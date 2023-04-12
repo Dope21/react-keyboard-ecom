@@ -1,6 +1,6 @@
 import { TfiSearch, TfiUser } from 'react-icons/tfi'
 import { RxHamburgerMenu } from 'react-icons/rx'
-import Cart from './Cart'
+import { BsBag } from 'react-icons/bs';
 const Navbar = () => {
   return (
     <>
@@ -42,9 +42,12 @@ const Navbar = () => {
               <button>
                 <TfiSearch size={25} />
               </button>
-              <div>
-                <Cart />
-              </div>
+              <div className="relative inline-flex">
+               <button className="text-gray-800 hover:text-gray-600 focus:outline-none w-7 h-7">
+                <BsBag size={25} />
+                </button>
+                <div className="w-3 h-3 bg-orange-500 rounded-full flex items-center justify-center absolute bottom-0 right-0 text-xs shadow text-white"></div>
+                </div>
               <button className="md:hidden">
                 <RxHamburgerMenu size={25} />
               </button>

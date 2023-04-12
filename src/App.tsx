@@ -5,7 +5,7 @@ import Login from './pages/Login'
 import CreateAccount from './pages/CreateAccount'
 import Home from './pages/Home'
 import './styles/index.css'
-import CardGrid from './pages/Showp'
+import product from './pages/Showp'
 import { ShoppingCartProvider } from './components/ShoppingCartContext'
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
             <Route path="/login" Component={Login} />
             <Route path="/register" Component={CreateAccount} />
             <Route path="/" Component={Home} />
-            <Route path="/products" Component={CardGrid} />
+            <Route path="/products" Component={product} />
           </Routes>
         </Router>
       </Container>

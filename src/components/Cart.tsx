@@ -1,21 +1,6 @@
-import { createContext,useContext,useState,ReactNode } from 'react';
+import { useState } from 'react';
 import { BsBag } from 'react-icons/bs';
 import { FiX } from 'react-icons/fi';
-
-type ShoppingCartProviderProps = {
-  children: ReactNode
-}
-const ShoppingCartContext = createContext({})
-export function useShoppingCart(){
-  return useContext(ShoppingCartContext)
-}
-
-export function ShoppingCartProvider({children}:ShoppingCartProviderProps){
-  return (<ShoppingCartContext.Provider value={{}}>
-    {children}
-    </ShoppingCartContext.Provider>)
-
-}
 
 const CartDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,12 +22,9 @@ const CartDrawer = () => {
 
   return (
     <>
-      <div className="relative inline-flex">
-        <button className="text-gray-800 hover:text-gray-600 focus:outline-none w-7 h-7" onClick={toggleCart}>
-          <BsBag size={25} />
-        </button>
-        <div className="w-3 h-3 bg-orange-500 rounded-full flex items-center justify-center absolute bottom-0 right-0 text-xs shadow text-white"></div>
-      </div>
+      <button className="text-gray-800 hover:text-gray-600 focus:outline-none" onClick={toggleCart}>
+        <BsBag size={25} />
+      </button>
       {isOpen && (
         <div className="fixed inset-0 z-50 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
