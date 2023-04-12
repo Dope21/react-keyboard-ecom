@@ -1,6 +1,21 @@
-import { useState } from 'react';
+import { createContext,useContext,useState,ReactNode } from 'react';
 import { BsBag } from 'react-icons/bs';
 import { FiX } from 'react-icons/fi';
+
+type ShoppingCartProviderProps = {
+  children: ReactNode
+}
+const ShoppingCartContext = createContext({})
+export function useShoppingCart(){
+  return useContext(ShoppingCartContext)
+}
+
+export function ShoppingCartProvider({children}:ShoppingCartProviderProps){
+  return (<ShoppingCartContext.Provider value={{}}>
+    {children}
+    </ShoppingCartContext.Provider>)
+
+}
 
 const CartDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);

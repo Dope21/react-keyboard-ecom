@@ -6,9 +6,11 @@ import CreateAccount from './pages/CreateAccount'
 import Home from './pages/Home'
 import './styles/index.css'
 import CardGrid from './pages/Showp'
+import { ShoppingCartProvider } from './components/ShoppingCartContext'
 
 function App() {
   return (
+    <ShoppingCartProvider>
     <main>
       <Navbar />
       <Container>
@@ -22,6 +24,7 @@ function App() {
         </Router>
       </Container>
     </main>
+    </ShoppingCartProvider>
   )
 }
 
