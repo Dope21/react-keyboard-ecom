@@ -64,6 +64,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
 
   return (
     <ShoppingCartContext.Provider value={{ getItemsQuantity, increaseQuantity,removeQuantity,cartItems,cartQuantity,opencart,closecart }}>
+
       {children}
     <ShoppingCart/>
     </ShoppingCartContext.Provider>
