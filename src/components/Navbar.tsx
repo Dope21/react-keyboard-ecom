@@ -1,7 +1,9 @@
 import { TfiSearch, TfiUser } from 'react-icons/tfi'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { BsBag } from 'react-icons/bs';
+import { useShoppingCart } from './ShoppingCartContext';
 const Navbar = () => {
+  const { opencart,cartQuantity} = useShoppingCart()
   return (
     <>
       <header className="fixed top-0 z-50 w-full">
@@ -42,11 +44,11 @@ const Navbar = () => {
               <button>
                 <TfiSearch size={25} />
               </button>
-              <div className="relative inline-flex">
+              <div className="relative inline-flex" onClick={opencart}>
                <button className="text-gray-800 hover:text-gray-600 focus:outline-none w-7 h-7">
                 <BsBag size={25} />
                 </button>
-                <div className="w-3 h-3 bg-orange-500 rounded-full flex items-center justify-center absolute bottom-0 right-0 text-xs shadow text-white"></div>
+                <div  className="w-3 h-3 bg-orange-500 rounded-full flex items-center justify-center absolute bottom-0 right-0 text-xs shadow text-white"> {cartQuantity}</div>
                 </div>
               <button className="md:hidden">
                 <RxHamburgerMenu size={25} />

@@ -6,16 +6,16 @@ type ShoppingCartProviderProps = {
 }
 
 type CartItem = {
-  title: string
-  quantity: number
+  id:number,
+  quantity: number,
 }
 
 type ShoppingCartContext = {
   opencart: () => void
   closecart: () => void
-  getItemsQuantity: (title: string) => number
-  increaseQuantity: (title: string) => void
-  removeQuantity: (title: string) => void
+  getItemsQuantity: (id: number) => number
+  increaseQuantity: (id: number) => void
+  removeQuantity: (id: number) => void
   cartQuantity: number
   cartItems: CartItem[]
 }
@@ -28,34 +28,38 @@ export function useShoppingCart() {
 
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(true)
+  const [isClose, setIsClose] = useState(false)
+  
   const cartQuantity = cartItems.reduce((quantity,item) => item.quantity + quantity, 0)
   const opencart = () => setIsOpen(true)
   const closecart = () => setIsOpen(false)
-  function getItemsQuantity(title: string) {
-    return cartItems.find(item => item.title === title)?.quantity || 0
+  function getItemsQuantity(id: number) {
+    return cartItems.find(item => item.id === id)?.quantity || 0
   }
-  function removeQuantity(title: string){
+  function removeQuantity(id: number){
     setCartItems(currItems => {
-        return currItems.filter(item => item.title != title)
+        return currItems.filter(item => item.id != id)
 
     })
   }
-  function increaseQuantity(title: string) {
+  function increaseQuantity(id: number) {
     setCartItems(currItems => {
-      if (currItems.find(item => item.title === title) == null) {
-        return [...currItems, { title, quantity: 1 }]
-      } else {
+      if (currItems.find(item => item.id === id)) {
         return currItems.map(item => {
-          if (item.title === title) {
+          if (item.id === id) {
             return { ...item, quantity: item.quantity + 1 }
           } else {
             return item
           }
         })
+      } else {
+        return [...currItems, { id: id, quantity: 1 }]
       }
     })
   }
+  
+  
 
   return (
     <ShoppingCartContext.Provider value={{ getItemsQuantity, increaseQuantity,removeQuantity,cartItems,cartQuantity,opencart,closecart }}>
