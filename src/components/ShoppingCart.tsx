@@ -21,12 +21,12 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
               className="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
               aria-hidden="true"
             ></div>
-            <section
-              className="absolute inset-y-0 right-0 pl-10 sm:w-full lg:w-2/3 max-w-full flex"
-              aria-labelledby="slide-over-heading"
-            >
-              <div className="relative w-full h-full">
-                <div className="h-full flex flex-col py-6 bg-white shadow-xl">
+                <section
+                  className="absolute inset-y-0 right-0 pl-10 sm:w-full lg:w-1/2 flex"
+                  aria-labelledby="slide-over-heading"
+                >
+                  <div className="relative w-full h-full w-full">
+                    <div className="h-full flex flex-col py-6 bg-white shadow-xl">
                   <div className="px-4 sm:px-6">
                     <div className="flex items-start justify-between">
                       <h2
