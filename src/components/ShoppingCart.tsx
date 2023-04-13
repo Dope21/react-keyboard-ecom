@@ -1,3 +1,4 @@
+import { HiShoppingCart } from "react-icons/hi";
 import { useShoppingCart } from "./ShoppingCartContext";
 
 type ShoppingCartProps = {
@@ -10,27 +11,54 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
   return (
     <>
       {isOpen && (
-        <div className="fixed top-0 right-0 h-screen w-full">
-          <div className="absolute top-0 right-0 h-screen w-full z-40"
-            onClick={closecart}
-          >
-            <div className="bg-black opacity-50 w-full h-full"></div>
-          </div>
-          <div className="fixed top-0 right-0 h-screen w-full flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg w-96">
-              <div className="p-6">
-                <h2 className="text-lg font-medium mb-4">Your cart</h2>
-                {/* Render your cart items here */}
+        <div className="fixed inset-0 overflow-hidden z-50">
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+            <section className="absolute inset-y-0 right-0 pl-10 sm:w-full lg:w-2/3 max-w-full flex" aria-labelledby="slide-over-heading">
+              <div className="relative w-full h-full">
+                <div className="h-full flex flex-col py-6 bg-white shadow-xl" >
+                  <div className="px-4 sm:px-6">
+                    <div className="flex items-start justify-between">
+                      <h2 className="text-lg font-medium text-gray-900" id="slide-over-heading">
+                        <HiShoppingCart className="inline-block mr-2 text-2xl" />
+                        Your Cart
+                      </h2>
+                      <div className="ml-3 h-7 flex items-center">
+                        <button
+                          type="button"
+                          className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-gray-500"
+                          onClick={closecart}
+                        >
+                          <span className="sr-only">Close panel</span>
+                          <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="relative flex-1 px-4 sm:px-6">
+                    <div className="mt-6 prose prose-indigo prose-lg text-gray-500">
+                      Your cart is empty.
+                    </div>
+                  </div>
+                  <div className="border-t border-gray-200">
+                    <div className="px-4 py-3 flex items-center justify-between sm:px-6">
+                      <p className="text-lg font-medium text-gray-900">Total:</p>
+                      <p className="text-lg font-medium text-gray-900"></p>
+                    </div>
+                    <div className="px-4 py-3 sm:px-6">
+                      <button
+                        type="button"
+                        className="w-full bg-red-500 border border-transparent rounded-md py-2 px-4 inline-flex justify-center text-base font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+                      >
+                        Checkout
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="p-6 flex justify-end">
-                <button
-                  className="text-white bg-red-500 hover:bg-red-600 py-2 px-4 rounded"
-                  onClick={closecart}
-                >
-                  Close
-                </button>
-              </div>
-            </div>
+            </section>
           </div>
         </div>
       )}
