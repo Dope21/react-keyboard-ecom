@@ -5,28 +5,36 @@
       "title": "K2 SSR",
       "image": "https://source.unsplash.com/random/400x200",
       "description": "A mechanical keyboard with RGB backlight",
-      "price": 330
+      "price": 330,
+      "qty" : 13,
+      "version" : "v4",
+      "type"  : "wireless",
+      "switches" : "blue switches",
+      "color" : "backlight"
     },
     {
       "id" : 2,
       "title": "M2 SSR",
       "image": "https://source.unsplash.com/random/400x200",
       "description": "A wireless mouse with RGB backlight",
-      "price": 220
+      "price": 220,
+      "qty" : 13
     },
     {
       "id" : 3,
       "title": "K2 SSR",
       "image": "https://source.unsplash.com/random/400x200",
       "description": "A mechanical keyboard with RGB backlight",
-      "price": 210
+      "price": 210,
+      "qty" : 13
     },
     {
       "id" : 4,
       "title": "K2 SSR",
       "image": "https://source.unsplash.com/random/400x200",
       "description": "A mechanical keyboard with RGB backlight",
-      "price": 123
+      "price": 123,
+      "qty" : 13
 
     }
   ]
