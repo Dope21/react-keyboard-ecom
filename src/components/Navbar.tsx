@@ -36,7 +36,7 @@ const Navbar = () => {
               </ul>
             </div>
             <div className="flex gap-4 md:gap-8">
-              <a href="/">
+              <a href="/login">
                 <TfiUser size={25} />
               </a>
               <button>
