@@ -14,6 +14,7 @@ export function StoreItems({id,title, image, description, price}: StoreItemProps
   const { getItemsQuantity, increaseQuantity,removeQuantity} = useShoppingCart()
   const quantity = 0
   return (
+    
     <Card className="border border-gray-300 rounded-lg overflow-hidden p-4">
       <div className="relative h-48 overflow-hidden">
         <Card.Img variant="top" src={image} alt={title} className="object-cover w-full h-full" />
