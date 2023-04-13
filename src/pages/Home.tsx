@@ -1,5 +1,6 @@
 import Container from '../components/Container'
 import { HiArrowLongRight } from 'react-icons/hi2'
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
@@ -22,12 +23,14 @@ const Home = () => {
               <p className="text-lg md:text-2xl font-semibold text-white">
                 QMK | LOW | PROFILE | 80% LAYOUT
               </p>
+              <Link to="/products">
               <div className="group text-base md:text-lg text-white border-2 border-white px-5 py-3 font-bold tracking-wider transition-all flex items-center gap-4 hover:text-black hover:bg-white ">
-                <a href="/">Shop Now</a>
+                Shop Now
                 <div className="group-hover:inline-block group-hover:opacity-100 group-hover:ml-0 opacity-0 transition-all duration-500 ml-[-2rem]">
                   <HiArrowLongRight />
                 </div>
               </div>
+              </Link>
             </div>
           </Container>
         </div>
