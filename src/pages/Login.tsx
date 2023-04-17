@@ -1,15 +1,15 @@
-import { InputBtn } from '../components/Button'
-import Input from '../components/Input'
+import { BigInputBtn } from '../components/Button'
+import { BigInput } from '../components/Input'
 import Form from '../components/Form'
-import { FormTitle } from '../components/Title'
+import { BigTitle } from '../components/Title'
 
 const Login = () => {
   return (
     <Form>
-      <FormTitle text="Login" />
-      <Input type="email" name="email" />
-      <Input type="password" name="password" />
-      <InputBtn text="Sign In" />
+      <BigTitle text="Login" />
+      <BigInput type="email" name="email" />
+      <BigInput type="password" name="password" />
+      <BigInputBtn text="Sign In" />
       <div className="flex justify-between">
         <a href="/register">Create account</a>
         <a href="/">Forgot password?</a>
