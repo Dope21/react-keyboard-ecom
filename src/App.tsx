@@ -6,6 +6,7 @@ import CreateAccount from './pages/CreateAccount'
 import Home from './pages/Home'
 import './styles/index.css'
 import CardGrid from './pages/Showp'
+import Checkout from './pages/Checkout'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/register" Component={CreateAccount} />
             <Route path="/" Component={Home} />
             <Route path="/products" Component={CardGrid} />
+            <Route path="/checkout" Component={Checkout} />
           </Routes>
         </Router>
       </Container>
