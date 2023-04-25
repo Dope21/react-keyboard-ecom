@@ -1,6 +1,6 @@
 import { useShoppingCart } from "./ShoppingCartContext";
 import { formatCurrency } from "./formatCurrency";
-import storeItems from "./info.json";
+import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 
 type CartItemProps = {
@@ -10,7 +10,18 @@ type CartItemProps = {
 
 export function CartItem({ id, quantity }: CartItemProps) {
   const { removeQuantity } = useShoppingCart();
-  const item = storeItems.products.find((i) => i.id === id);
+  const [item, setItem] = useState<any>(null);
+
+  useEffect(() => {
+    async function fetchProduct() {
+      const response = await fetch(`/api/products/${id}`);
+      const data = await response.json();
+      setItem(data);
+    }
+
+    fetchProduct();
+  }, [id]);
+
   if (item == null) return null;
 
   return (
