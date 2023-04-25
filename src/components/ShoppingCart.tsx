@@ -1,16 +1,33 @@
+import { useState, useEffect } from "react";
 import { HiShoppingCart } from "react-icons/hi";
 import { useShoppingCart } from "./ShoppingCartContext";
 import { Offcanvas, Stack } from "react-bootstrap";
 import { CartItem } from "./CartItem";
-import { formatCurrency } from "./formatCurrency"
-import storeItems from "./info.json"
+import { formatCurrency } from "./formatCurrency";
+import axios from "axios";
 
 type ShoppingCartProps = {
   isOpen: boolean;
 };
 
+type Product = {
+  id: string;
+  title: string;
+  price: number;
+  image: string;
+};
+
 export function ShoppingCart({ isOpen }: ShoppingCartProps) {
   const { closecart, cartItems } = useShoppingCart();
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const response = await axios.get<Product[]>("/api/products");
+      setProducts(response.data);
+    };
+    fetchProducts();
+  }, []);
 
   return (
     <>
@@ -21,12 +38,12 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
               className="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
               aria-hidden="true"
             ></div>
-                <section
-                  className="absolute inset-y-0 right-0 pl-10 sm:w-full lg:w-1/2 flex"
-                  aria-labelledby="slide-over-heading"
-                >
-                  <div className="relative w-full h-full w-full">
-                    <div className="h-full flex flex-col py-6 bg-white shadow-xl">
+            <section
+              className="absolute inset-y-0 right-0 pl-10 sm:w-full lg:w-1/2 flex"
+              aria-labelledby="slide-over-heading"
+            >
+              <div className="relative w-full h-full w-full">
+                <div className="h-full flex flex-col py-6 bg-white shadow-xl">
                   <div className="px-4 sm:px-6">
                     <div className="flex items-start justify-between">
                       <h2
@@ -75,36 +92,21 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
                   </div>
                   <div className="border-t border-gray-200">
                     <div className="px-4 py-3 flex items-center justify-between sm:px-6">
-                      <p className="text-lg font-medium text-gray-900">
-                      <Offcanvas.Body>
-                      <Stack gap={3}> 
-                            <div className="ms-auto fw-blod fs-5">
-                              Total: {formatCurrency(cartItems.reduce ((total,cartItems)=>{
-                                 const item = storeItems.products.find((i) => i.id === cartItems.id)
-                                 return total + (item?.price || 0) * cartItems.quantity 
-                              },0))}
-
-                            </div>
-                      </Stack>
-                      </Offcanvas.Body>
-                      </p>
-                      <p className="text-lg font-medium text-gray-900"></p>
+                      <p className="font-medium text-gray-900">Total:</p>
+                      <p className="font-medium text-gray-900">{formatCurrency(cartItems.reduce((acc, curr) => acc + curr.price * curr.quantity, 0))}</p>
                     </div>
-                    <div className="px-4 py-3 sm:px-6">
-                      <button
-                        type="button"
-                        className="w-full bg-red-500 border border-transparent rounded-md py-2 px-4 inline-flex justify-center text-base font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-                      >
-                        Checkout
-                        </button>
-                    </div>
+                  <div className="px-4 py-3 sm:px-6">
+                      <button className="w-full bg-indigo-500 text-white py-3 rounded-md hover:bg-indigo-600" disabled={!cartItems.length}>
+                              Checkout
+                      </button>
                   </div>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
-      )}
+                    </div>
+                      </div>
+                        </div>
+                  </section>
+                      </div>
+                        </div>
+                          )}
     </>
-  );
+    );
 }
