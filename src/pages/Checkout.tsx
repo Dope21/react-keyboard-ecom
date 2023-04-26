@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react'
-
+import { useState } from 'react'
 import CheckOutHeader from '../components/CheckOutHeader'
 import Information from './Information'
 import Shipping from './Shipping'
@@ -8,18 +7,6 @@ import OrderDetail from './OrderDetail'
 import { InfomationProps } from '../interface/checkout'
 
 const Checkout = () => {
-  // const shippingInfo = {
-  //   email: '',
-  //   firstname: '',
-  //   lastname: '',
-  //   country: '',
-  //   address: '',
-  //   city: '',
-  //   provice: '',
-  //   zip_code: '',
-  //   phone: '',
-  //   page: ''
-  // }
   const handleInfo = (data: InfomationProps) => {
     if (data.page == 'shipping') {
       setCheckoutPage(<Shipping onData={handleInfo} data={data} />)
