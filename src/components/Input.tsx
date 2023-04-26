@@ -1,6 +1,8 @@
 type BigProps = {
   type: string
   name: string
+  value: string
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 type NoLabelProps = {
@@ -26,7 +28,7 @@ type CheckBoxProps = {
   label: string
 }
 
-export const BigInput = ({ type, name }: BigProps) => {
+export const BigInput = ({ type, name, value, onChange }: BigProps) => {
   return (
     <div className="flex flex-col">
       <label
@@ -40,6 +42,8 @@ export const BigInput = ({ type, name }: BigProps) => {
         name={name}
         id={name}
         className="w-full border px-3 py-2"
+        onChange={onChange}
+        value={value}
       />
     </div>
   )
