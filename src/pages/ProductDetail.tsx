@@ -5,22 +5,6 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
-interface Product {
-  id: number
-  title: string
-  image: string
-  description: string
-  price: number
-  qty?: number
-  version?: string
-  type?: string
-  switches?: string
-  color?: string
-  connection?: string
-  option?: string
-  quantity_set?: string
-}
-
 const ProductDetail: React.FC = () => {
   const { category, id } = useParams()
   const [item, setItem] = useState<any>()

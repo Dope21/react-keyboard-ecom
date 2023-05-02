@@ -19,7 +19,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
         'http://127.0.0.1:8000/product/get_all_product'
       )
       const data = await response.json()
-      setStoreItems(data)
+      setStoreItems(data.data)
     }
     fetchStoreItems()
   }, [])
