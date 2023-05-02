@@ -16,7 +16,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
   useEffect(() => {
     async function fetchStoreItems() {
       const response = await fetch(
-        'http://127.0.0.1:8000/product/get_all_category'
+        'http://127.0.0.1:8000/product/get_all_product'
       )
       const data = await response.json()
       setStoreItems(data)

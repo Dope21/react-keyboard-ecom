@@ -1,6 +1,5 @@
 import { Button, Card } from 'react-bootstrap'
 import { formatCurrency } from './formatCurrency'
-import { useShoppingCart } from './ShoppingCartContext'
 import { Link } from 'react-router-dom'
 
 type StoreItemProps = {
@@ -25,9 +24,6 @@ export function StoreItems({
   price,
   category
 }: StoreItemProps) {
-  const { getItemsQuantity, increaseQuantity, removeQuantity } =
-    useShoppingCart()
-  const quantity = 0
   return (
     <Card className="border border-gray-300 rounded-lg overflow-hidden p-4">
       <div className="relative h-48 overflow-hidden">
@@ -50,12 +46,6 @@ export function StoreItems({
         </p>
 
         <div className="flex justify-center flex-col">
-          <Button
-            className="w-full bg-green-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mb-2"
-            onClick={() => increaseQuantity(id)}
-          >
-            Add To Cart
-          </Button>
           <Link to={`/products/${category}/${id}`} className="mt-2">
             <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mb-2">
               Detail
