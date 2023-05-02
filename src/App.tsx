@@ -24,12 +24,15 @@ function App() {
           <Router>
             <Navbar />
             <Routes>
-              <Route path="/login" Component={Login} />
-              <Route path="/register" Component={CreateAccount} />
-              <Route path="/" Component={Home} />
-              <Route path="/checkout" Component={Checkout} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<CreateAccount />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/checkout" element={<Checkout />} />
               <Route path="/products/:category" element={<Products />} />
-              <Route path="/products/:category/:id" Component={ProductDetail} />
+              <Route
+                path="/products/:category/:id"
+                element={<ProductDetail />}
+              />
             </Routes>
           </Router>
         </Container>
