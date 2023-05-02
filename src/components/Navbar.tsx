@@ -1,12 +1,14 @@
 import { TfiSearch, TfiUser } from 'react-icons/tfi'
 import { RxHamburgerMenu } from 'react-icons/rx'
-import { BsBag } from 'react-icons/bs';
-import { useShoppingCart } from './ShoppingCartContext';
+import { BsBag } from 'react-icons/bs'
+import { useShoppingCart } from './ShoppingCartContext'
+import { Link } from 'react-router-dom'
+
 const Navbar = () => {
-  const { opencart,cartQuantity} = useShoppingCart()
+  const { opencart, cartQuantity } = useShoppingCart()
   return (
     <>
-      <header className="fixed top-0 z-50 w-full">
+      <header className="fixed top-0 z-50 left-0 right-0">
         <div className="bg-black text-white text-center py-1 px-5 text-sm md:text-base">
           All the products will be shipped within 4 business days.
         </div>
@@ -21,19 +23,29 @@ const Navbar = () => {
             <div className="hidden md:block">
               <ul className="flex">
                 <li className="px-4 text-lg">
-                  <a href="/">All products</a>
+                  <Link to="/products/all" data-category="all">
+                    All products
+                  </Link>
                 </li>
                 <li className="px-4 text-lg">
-                  <a href="/">Keyboard</a>
+                  <Link to="/products/keyboard" data-category="keyboard">
+                    Keyboard
+                  </Link>
                 </li>
                 <li className="px-4 text-lg">
-                  <a href="/">Keycap</a>
+                  <Link to="/products/keycap" data-category="keycap">
+                    Keycap
+                  </Link>
                 </li>
                 <li className="px-4 text-lg">
-                  <a href="/">Switch</a>
+                  <Link to="/products/switch" data-category="switch">
+                    Switch
+                  </Link>
                 </li>
                 <li className="px-4 text-lg">
-                  <a href="/">Mouse</a>
+                  <Link to="/products/mouse" data-category="mouse">
+                    Mouse
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -45,13 +57,16 @@ const Navbar = () => {
                 <TfiSearch size={25} />
               </button>
               <div className="relative inline-flex" onClick={opencart}>
-               <button className="text-gray-800 hover:text-gray-600 focus:outline-none w-7 h-7">
-                <BsBag size={25} />
+                <button className="text-gray-800 hover:text-gray-600 focus:outline-none w-7 h-7">
+                  <BsBag size={25} />
                 </button>
                 {cartQuantity > 0 && (
-                <div  className="w-4 h-4 bg-orange-500 rounded-full flex items-center justify-center absolute bottom-0 right-0 text-xs shadow text-white"> {cartQuantity}</div>
+                  <div className="w-4 h-4 bg-orange-500 rounded-full flex items-center justify-center absolute bottom-0 right-0 text-xs shadow text-white">
+                    {' '}
+                    {cartQuantity}
+                  </div>
                 )}
-                </div>
+              </div>
               <button className="md:hidden">
                 <RxHamburgerMenu size={25} />
               </button>
