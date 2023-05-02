@@ -1,7 +1,8 @@
 import { useShoppingCart } from "./ShoppingCartContext";
 import { formatCurrency } from "./formatCurrency";
-import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 type CartItemProps = {
   id: number;
@@ -13,13 +14,15 @@ export function CartItem({ id, quantity }: CartItemProps) {
   const [item, setItem] = useState<any>(null);
 
   useEffect(() => {
-    async function fetchProduct() {
-      const response = await fetch(`/api/products/${id}`);
-      const data = await response.json();
-      setItem(data);
-    }
-
-    fetchProduct();
+    axios.get('http://127.0.0.1:8000/product/get_all_category')
+      .then(response => {
+        const products = response.data.products;
+        const foundItem = products.find((i: any) => i.id === id);
+        setItem(foundItem);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }, [id]);
 
   if (item == null) return null;
