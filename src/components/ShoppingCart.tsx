@@ -3,7 +3,7 @@ import { useShoppingCart } from "./ShoppingCartContext";
 import { Offcanvas, Stack } from "react-bootstrap";
 import { CartItem } from "./CartItem";
 import { formatCurrency } from "./formatCurrency"
-import storeItems from "./info.json"
+import { useState, useEffect } from "react";
 
 type ShoppingCartProps = {
   isOpen: boolean;
@@ -11,7 +11,16 @@ type ShoppingCartProps = {
 
 export function ShoppingCart({ isOpen }: ShoppingCartProps) {
   const { closecart, cartItems } = useShoppingCart();
+  const [storeItems, setStoreItems] = useState<any[]>([]);
 
+  useEffect(() => {
+    async function fetchStoreItems() {
+      const response = await fetch("http://127.0.0.1:8000/product/get_all_category");
+      const data = await response.json();
+      setStoreItems(data);
+    }
+    fetchStoreItems();
+  }, []);
   return (
     <>
       {isOpen && (
@@ -80,7 +89,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
                       <Stack gap={3}> 
                             <div className="ms-auto fw-blod fs-5">
                               Total: {formatCurrency(cartItems.reduce ((total,cartItems)=>{
-                                 const item = storeItems.products.find((i) => i.id === cartItems.id)
+                                 const item = storeItems.find((i) => i.id === cartItems.id)
                                  return total + (item?.price || 0) * cartItems.quantity 
                               },0))}
 

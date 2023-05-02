@@ -1,17 +1,40 @@
-import storeItems from '../components/info.json';
-import { StoreItems } from "../components/StoreItems"
-import { Fragment } from 'react';
+import { useState, useEffect } from 'react';
+import { StoreItems } from "../components/StoreItems";
 
-export function Products () {
+interface Product {
+id: number;
+name: string;
+price: number;
+description: string;
+image_url: string;
+category: string;
+}
+
+export function Products() {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const res = await fetch('http://127.0.0.1:8000/product/get_all_category');
+      const data = await res.json();
+      console.log(typeof data, data);
+      setProducts(data.data);
+    };
+    fetchProducts();
+  }, []);
+
   return (
-    <Fragment>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 pt-16">
-        {storeItems.products.map(item => (
-          <div key={item.title}>
-            <StoreItems {...item} />
-          </div>
-        ))}
-      </div>
-    </Fragment>
-  )
+    <div className="grid grid-cols-3 gap-4">
+      {products.map((product) => (
+        <StoreItems
+          key={product.id}
+          id={product.id}
+          name={product.name}
+          image_url={product.image_url}
+          description={product.description}
+          price={product.price}
+        />
+      ))}
+    </div>
+  );
 }

@@ -1,7 +1,8 @@
 import { useShoppingCart } from "./ShoppingCartContext";
 import { formatCurrency } from "./formatCurrency";
-import storeItems from "./info.json";
 import { Button } from "react-bootstrap";
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 type CartItemProps = {
   id: number;
@@ -10,7 +11,20 @@ type CartItemProps = {
 
 export function CartItem({ id, quantity }: CartItemProps) {
   const { removeQuantity } = useShoppingCart();
-  const item = storeItems.products.find((i) => i.id === id);
+  const [item, setItem] = useState<any>(null);
+
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/product/get_all_category')
+      .then(response => {
+        const products = response.data.products;
+        const foundItem = products.find((i: any) => i.id === id);
+        setItem(foundItem);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, [id]);
+
   if (item == null) return null;
 
   return (
