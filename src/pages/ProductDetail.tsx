@@ -59,7 +59,7 @@ const ProductDetail: React.FC = () => {
           </div>
           <Button
             className="w-full bg-green-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mb-2"
-            onClick={() => increaseQuantity(Number(id))}
+            onClick={() => increaseQuantity(Number(id), category || '')}
           >
             Add To Cart
           </Button>

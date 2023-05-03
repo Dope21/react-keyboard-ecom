@@ -1,36 +1,37 @@
-import { useShoppingCart } from './ShoppingCartContext';
-import { formatCurrency } from './formatCurrency';
-import { Button } from 'react-bootstrap';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useShoppingCart } from './ShoppingCartContext'
+import { formatCurrency } from './formatCurrency'
+import { Button } from 'react-bootstrap'
+import axios from 'axios'
+import { useState, useEffect } from 'react'
 
 type CartItemProps = {
-  id: number;
-  quantity: number;
-};
+  id: number
+  quantity: number
+}
 
 export function CartItem({ id, quantity }: CartItemProps) {
   // Get the shopping cart functions from the context
-  const { removeQuantity, decreaseQuantity, increaseQuantity } = useShoppingCart();
+  const { removeQuantity, decreaseQuantity, increaseQuantity } =
+    useShoppingCart()
 
   // Use state to store the item information
-  const [item, setItem] = useState<any>(null);
+  const [item, setItem] = useState<any>(null)
 
   // Fetch the item information from the API when the component mounts
   useEffect(() => {
     axios
       .get('http://127.0.0.1:8000/product/get_all_product')
       .then(response => {
-        const products = response.data.data;
-        const foundItem = products.find((i: any) => i.id === id);
-        setItem(foundItem);
+        const products = response.data.data
+        const foundItem = products.find((i: any) => i.id === id)
+        setItem(foundItem)
       })
       .catch(error => {
-        console.log(error);
-      });
-  }, [id]);
+        console.log(error)
+      })
+  }, [id])
 
-  if (item == null) return null;
+  if (item == null) return null
 
   return (
     <div className="flex flex-col md:flex-row items-center justify-between mb-4">
@@ -69,11 +70,11 @@ export function CartItem({ id, quantity }: CartItemProps) {
         <Button
           variant="link"
           className="text-green-500 hover:text-green-700 py-2 px-4 border-green-500 hover:border-green-700 rounded-md ml-4"
-          onClick={() => increaseQuantity(item.id)}
+          onClick={() => increaseQuantity(item.id, item.category)}
         >
           +
         </Button>
       </div>
     </div>
-  );
+  )
 }
