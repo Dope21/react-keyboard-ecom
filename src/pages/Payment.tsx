@@ -1,5 +1,5 @@
+import axios from 'axios'
 import { BlackBtn } from '../components/Button'
-// import SelectPayment from '../components/SelectPayment'
 import { FormTitle } from '../components/Title'
 import { InfomationProps } from '../interface/checkout'
 import { useState } from 'react'
@@ -12,7 +12,38 @@ const Payment = ({ data }: Props) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     data.pay_method = method
-    console.log(data)
+    const newData = {
+      email: data.email,
+      firstname: data.firstname,
+      lastname: data.lastname,
+      pay_method: data.pay_method,
+      address:
+        data.address +
+        ' ' +
+        data.city +
+        ' ' +
+        data.province +
+        ' ' +
+        data.country,
+      phone: data.phone,
+      zip_code: data.zip_code,
+      discount: Number(localStorage.getItem('discount')) || 1,
+      code: localStorage.getItem('code') || ''
+    }
+    console.log(newData)
+    axios({
+      method: 'POST',
+      url: 'http://127.0.0.1:8000/order/checkout/',
+      data: newData
+    })
+      .then(response => {
+        if (response.status == 200) {
+          window.location.replace('/profile')
+        }
+      })
+      .catch(error => {
+        console.log(error.response.data.detail)
+      })
   }
   const [method, setMethod] = useState('')
 

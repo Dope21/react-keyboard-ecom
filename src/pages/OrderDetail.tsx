@@ -7,9 +7,22 @@ import { useState, useCallback } from 'react'
 
 type Props = {
   orderItems: any[]
+  code: string
+  discount: {
+    code: string
+    discount: number
+  }
+  handleGetCode: (e: React.FormEvent<HTMLFormElement>) => void
+  handleOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const OrderDetail = ({ orderItems }: Props) => {
+const OrderDetail = ({
+  orderItems,
+  code,
+  discount,
+  handleGetCode,
+  handleOnChange
+}: Props) => {
   const getTotal = (discount = 1) => {
     let total = 0
     orderItems.map(item => {
@@ -17,44 +30,7 @@ const OrderDetail = ({ orderItems }: Props) => {
     })
     return total * discount
   }
-  const shipping = 9
-  const [code, setCode] = useState('')
-  const [discount, setDiscount] = useState({
-    code: '',
-    discount: 1
-  })
-  const handleOnChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      e.persist()
-      setCode(prev => e.target.value)
-    },
-    []
-  )
-
-  const handleSubmit = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault()
-      axios({
-        method: 'POST',
-        url: 'http://127.0.0.1:8000/order/get_discount',
-        data: {
-          code: code
-        }
-      })
-        .then(response => {
-          console.log(response.data.data)
-          setDiscount(response.data.data)
-        })
-        .catch(error => {
-          console.log(error.response.data.detail)
-          setDiscount({
-            code: '',
-            discount: 1
-          })
-        })
-    },
-    [code]
-  )
+  const shipping = 10
   return (
     <div className="pt-6">
       <div>
@@ -66,7 +42,7 @@ const OrderDetail = ({ orderItems }: Props) => {
       <Line />
       <form
         className="flex items-start justify-between gap-4"
-        onSubmit={handleSubmit}
+        onSubmit={handleGetCode}
       >
         <div className="w-full">
           <NoLabelInput
