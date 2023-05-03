@@ -64,7 +64,7 @@ const ProductDetail: React.FC = () => {
             Add To Cart
           </Button>
           <Button className="w-full bg-blue-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded mb-2">
-            <Link to="/checkout">Buy Now</Link>
+            <Link to={`/products/${category}/${id}/buynow`}>Buy Now</Link>
           </Button>
         </>
       )}

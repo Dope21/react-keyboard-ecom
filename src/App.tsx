@@ -10,6 +10,7 @@ import { Products } from './pages/Showp'
 import { ShoppingCartProvider } from './components/ShoppingCartContext'
 import ProductDetail from './pages/ProductDetail'
 import Profile from './pages/Profile'
+import Buynow from './pages/Buynow'
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/products/:category" element={<Products />} />
+              <Route
+                path="/products/:category/:id/buynow"
+                element={<Buynow />}
+              />
               <Route
                 path="/products/:category/:id"
                 element={<ProductDetail />}
