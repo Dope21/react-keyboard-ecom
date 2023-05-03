@@ -9,6 +9,7 @@ import Checkout from './pages/Checkout'
 import { Products } from './pages/Showp'
 import { ShoppingCartProvider } from './components/ShoppingCartContext'
 import ProductDetail from './pages/ProductDetail'
+import Profile from './pages/Profile'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Navbar />
             <Routes>
               <Route path="/login" element={<Login />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/register" element={<CreateAccount />} />
               <Route path="/" element={<Home />} />
               <Route path="/checkout" element={<Checkout />} />

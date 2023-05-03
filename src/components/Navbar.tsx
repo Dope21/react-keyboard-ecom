@@ -50,9 +50,9 @@ const Navbar = () => {
               </ul>
             </div>
             <div className="flex gap-4 md:gap-8">
-              <a href="/login">
+              <Link to="/profile">
                 <TfiUser size={25} />
-              </a>
+              </Link>
               <button>
                 <TfiSearch size={25} />
               </button>
