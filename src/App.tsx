@@ -9,14 +9,8 @@ import Checkout from './pages/Checkout'
 import { Products } from './pages/Showp'
 import { ShoppingCartProvider } from './components/ShoppingCartContext'
 import ProductDetail from './pages/ProductDetail'
-import { useState } from 'react'
 
 function App() {
-  // const [category, setCategory] = useState('All products')
-  // const linkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-  //   const newCate = e.currentTarget.getAttribute('data-category') || ''
-  //   setCategory(newCate)
-  // }
   return (
     <ShoppingCartProvider>
       <main>
