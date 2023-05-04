@@ -54,7 +54,6 @@ const Checkout = () => {
   const email = localStorage.getItem('email')
   if (email == null) {
     window.location.replace('/login')
-    return
   }
   const [orderItems, setOrderItems] = useState<any[]>([])
 
