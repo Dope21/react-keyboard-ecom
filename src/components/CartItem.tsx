@@ -1,37 +1,37 @@
-import { useShoppingCart } from './ShoppingCartContext'
-import { formatCurrency } from './formatCurrency'
-import { Button } from 'react-bootstrap'
-import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useShoppingCart } from './ShoppingCartContext';
+import { formatCurrency } from './formatCurrency';
+import { Button } from 'react-bootstrap';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 type CartItemProps = {
-  id: number
-  quantity: number
-}
+  id: number;
+  category: string;
+  quantity: number;
+};
 
-export function CartItem({ id, quantity }: CartItemProps) {
+export function CartItem({ id, category, quantity }: CartItemProps) {
   // Get the shopping cart functions from the context
-  const { removeQuantity, decreaseQuantity, increaseQuantity } =
-    useShoppingCart()
+  const { removeQuantity, decreaseQuantity, increaseQuantity } = useShoppingCart();
 
   // Use state to store the item information
-  const [item, setItem] = useState<any>(null)
+  const [item, setItem] = useState<any>(null);
 
   // Fetch the item information from the API when the component mounts
   useEffect(() => {
     axios
       .get('http://127.0.0.1:8000/product/get_all_product')
       .then(response => {
-        const products = response.data.data
-        const foundItem = products.find((i: any) => i.id === id)
-        setItem(foundItem)
+        const products = response.data.data;
+        const foundItem = products.find((i: any) => i.id === id && i.category === category);
+        setItem(foundItem);
       })
       .catch(error => {
-        console.log(error)
-      })
-  }, [id])
+        console.log(error);
+      });
+  }, [id, category]);
 
-  if (item == null) return null
+  if (item == null) return null;
 
   return (
     <div className="flex flex-col md:flex-row items-center justify-between mb-4">
@@ -54,7 +54,7 @@ export function CartItem({ id, quantity }: CartItemProps) {
         <Button
           variant="link"
           className="text-red-500 hover:text-red-700 py-2 px-4 border-red-500 hover:border-red-700 rounded-md"
-          onClick={() => removeQuantity(item.id)}
+          onClick={() => removeQuantity(item.id, item.category)}
         >
           Remove
         </Button>
@@ -62,7 +62,7 @@ export function CartItem({ id, quantity }: CartItemProps) {
           <Button
             variant="link"
             className="text-gray-500 hover:text-gray-700 py-2 px-4 border-gray-500 hover:border-gray-700 rounded-md ml-4"
-            onClick={() => decreaseQuantity(item.id)}
+            onClick={() => decreaseQuantity(item.id, item.category)}
           >
             -
           </Button>
@@ -76,5 +76,5 @@ export function CartItem({ id, quantity }: CartItemProps) {
         </Button>
       </div>
     </div>
-  )
+  );
 }
