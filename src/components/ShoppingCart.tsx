@@ -1,4 +1,3 @@
-
 import { HiShoppingCart } from 'react-icons/hi'
 import { useShoppingCart } from './ShoppingCartContext'
 import { Offcanvas, Stack } from 'react-bootstrap'
@@ -132,7 +131,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
                       <p className="text-lg font-medium text-gray-900"></p>
                     </div>
                     <div className="px-4 py-3 sm:px-6">
-                    <button
+                      <button
                         type="button"
                         className="w-full bg-red-500 border border-transparent rounded-md py-2 px-4 inline-flex justify-center text-base font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
                         onClick={handleCheckout}
