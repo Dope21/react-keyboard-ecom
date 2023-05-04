@@ -6,8 +6,10 @@ import Payment from './Payment'
 import OrderDetail from './OrderDetail'
 import { InfomationProps } from '../interface/checkout'
 import axios from 'axios'
+import { useParams } from 'react-router-dom'
 
-const Checkout = () => {
+const Buynow = () => {
+  const { id, category } = useParams()
   const [code, setCode] = useState('')
   const [discount, setDiscount] = useState({
     code: '',
@@ -62,15 +64,16 @@ const Checkout = () => {
     localStorage.removeItem('code')
     axios({
       method: 'POST',
-      url: 'http://127.0.0.1:8000/customer/get_cart_detail/',
+      url: 'http://127.0.0.1:8000/product/detail/',
       data: {
-        email: email
+        pro_id: id,
+        cate_name: category
       }
     })
       .then(response => {
         if (response.status == 200) {
           console.log(response.data.data)
-          setOrderItems(response.data.data)
+          setOrderItems([response.data.data])
         }
       })
       .catch(error => {
@@ -111,4 +114,4 @@ const Checkout = () => {
   )
 }
 
-export default Checkout
+export default Buynow
