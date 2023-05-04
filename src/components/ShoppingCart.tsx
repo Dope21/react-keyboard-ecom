@@ -1,10 +1,10 @@
+
 import { HiShoppingCart } from 'react-icons/hi'
 import { useShoppingCart } from './ShoppingCartContext'
 import { Offcanvas, Stack } from 'react-bootstrap'
 import { CartItem } from './CartItem'
 import { formatCurrency } from './formatCurrency'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 
 type ShoppingCartProps = {
   isOpen: boolean
@@ -24,28 +24,6 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
     }
     fetchStoreItems()
   }, [])
-
-  const handleCheckout = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const data = {
-      email: localStorage.getItem('email') || '',
-      product_list: cartItems
-    }
-    axios({
-      method: 'POST',
-      url: 'http://127.0.0.1:8000/customer/set_cart_item/',
-      data: data
-    })
-      .then(response => {
-        if (response.status == 200) {
-          console.log(response.data)
-          window.location.replace('/checkout')
-        }
-      })
-      .catch(error => {
-        console.log(error.response.data.detail)
-      })
-  }
-
   return (
     <>
       {isOpen && (
@@ -99,7 +77,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
                   <div className="relative flex-1 px-4 sm:px-6">
                     <div className="mt-6 prose prose-indigo prose-lg text-gray-500">
                       <Offcanvas.Body>
-                        <Stack gap={3}>
+                        <Stack gap={3} className="overflow-y-auto h-96">
                           {cartItems.map(item => (
                             <CartItem key={item.id} {...item} />
                           ))}
@@ -135,7 +113,6 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
                       <button
                         type="button"
                         className="w-full bg-red-500 border border-transparent rounded-md py-2 px-4 inline-flex justify-center text-base font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-                        onClick={handleCheckout}
                       >
                         Checkout
                       </button>
