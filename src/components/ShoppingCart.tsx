@@ -43,6 +43,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
       })
       .catch(error => {
         console.log(error.response.data.detail)
+        window.location.replace('/login')
       })
   }
   return (
