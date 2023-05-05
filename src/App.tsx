@@ -10,6 +10,7 @@ import { Products } from './pages/Showp'
 import { ShoppingCartProvider } from './components/ShoppingCartContext'
 import ProductDetail from './pages/ProductDetail'
 import { useState } from 'react'
+import Profile from './pages/Profile'
 
 function App() {
   // const [category, setCategory] = useState('All products')
@@ -33,6 +34,7 @@ function App() {
                 path="/products/:category/:id"
                 element={<ProductDetail />}
               />
+              <Route path="/profile" element={<Profile />} />
             </Routes>
           </Router>
         </Container>

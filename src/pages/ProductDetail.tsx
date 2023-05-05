@@ -3,7 +3,6 @@ import { useShoppingCart } from '../components/ShoppingCartContext'
 import { Button } from 'react-bootstrap'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
 
 const ProductDetail: React.FC = () => {
   const { category, id } = useParams()
@@ -59,12 +58,16 @@ const ProductDetail: React.FC = () => {
           </div>
           <Button
             className="w-full bg-green-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mb-2"
-            onClick={() => increaseQuantity(Number(id),category || " ")}
+            onClick={() =>
+              item.qty <= 0
+                ? alert('Product out of stock.')
+                : increaseQuantity(Number(id), category || ' ')
+            }
           >
             Add To Cart
           </Button>
           <Button className="w-full bg-blue-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded mb-2">
-            <Link to="/checkout">Buy Now</Link>
+            Buy Now
           </Button>
         </>
       )}

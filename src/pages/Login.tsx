@@ -32,7 +32,6 @@ const Login = () => {
           if (response.status === 200) {
             const email = response.data.data
             localStorage.setItem('email', email)
-            console.log(localStorage.getItem('email'))
             window.location.replace('/')
           }
         })

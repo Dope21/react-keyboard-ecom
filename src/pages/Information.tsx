@@ -8,9 +8,62 @@ type Props = {
   onData: (data: InfomationProps) => void
 }
 
+const Provides = [
+  'Amnat Charoen',
+  'Nakhon Sawan',
+  'Nakhon Si Thammarat',
+  'Nan',
+  'Narathiwat',
+  'Nong Bua Lam Phu',
+  'Nong Khai',
+  'Nonthaburi',
+  'Pathum Thani',
+  'Pattani',
+  'attaya',
+  'Phang Nga',
+  'Phatthalung',
+  'Phayao',
+  'Phetchabun',
+  'Phetchaburi',
+  'Phichit',
+  'Phitsanulok',
+  'Phra Nakhon Si Ayutthaya',
+  'Phrae',
+  'Phuket',
+  'Prachin Buri',
+  'Prachuap Khiri Khan',
+  'Ranong',
+  'Ratchaburi',
+  'Rayong',
+  'Roi Et',
+  'Sa Kaeo',
+  'Sakon Nakhon',
+  'Samut Prakan',
+  'Samut Sakhon',
+  'Samut Songkhram',
+  'Saraburi',
+  'Satun',
+  'Sing Buri',
+  'Si Sa Ket',
+  'Songkhla',
+  'Sukhothai',
+  'Suphanburi',
+  'Surat Thani',
+  'Surin',
+  'Tak',
+  'Trang',
+  'Trat',
+  'Ubon Ratchathani',
+  'Udon Thani',
+  'Uthai Thani',
+  'Uttaradit',
+  'Yala',
+  'Yasothon'
+]
+
 const Information = ({ onData }: Props) => {
   const [inputs, setInputs] = useState({
-    email: '',
+    email: localStorage.getItem('email') || '',
     firstname: '',
     lastname: '',
     country: '',
@@ -21,7 +74,8 @@ const Information = ({ onData }: Props) => {
     phone: '',
     ship_method: '',
     pay_method: '',
-    page: ''
+    page: '',
+    code: ''
   })
 
   const handleOnChange = useCallback(
@@ -42,6 +96,7 @@ const Information = ({ onData }: Props) => {
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault()
+      console.log(inputs.email)
       const data = inputs
       data.page = 'shipping'
       onData(data)
@@ -71,7 +126,7 @@ const Information = ({ onData }: Props) => {
         <div className="absolute h-[.5px] z-[-1] top-5 w-full bg-slate-200"></div>
       </div>
 
-      <div className="mb-10">
+      {/* <div className="mb-10">
         <FormTitle text="Contract information" />
         <NoLabelInput
           name="email"
@@ -81,7 +136,7 @@ const Information = ({ onData }: Props) => {
           value={inputs.email}
         />
         <CheckBox label="Email me with news and offers" />
-      </div>
+      </div> */}
 
       <div>
         <FormTitle text="Shipping address" />
@@ -90,6 +145,7 @@ const Information = ({ onData }: Props) => {
           placeholder="Country/region"
           value={inputs.country}
           onChange={handleOnChange}
+          options={['Thailand']}
         />
       </div>
       <div className="grid md:grid-cols-2 gap-2">
@@ -128,6 +184,7 @@ const Information = ({ onData }: Props) => {
           placeholder="Province"
           value={inputs.province}
           onChange={handleOnChange}
+          options={Provides}
         />
         <NoLabelInput
           name="zip_code"

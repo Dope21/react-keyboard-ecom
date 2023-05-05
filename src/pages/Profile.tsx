@@ -15,7 +15,7 @@ const Profile = () => {
   }
   return (
     <Form onSubmit={handleSubmit}>
-      <div className="absolute inset-0 flex justify-center items-center">
+      <div className="absolute inset-0 flex justify-center items-center cursor-pointer">
         <BlackBtn text="Logout" />
       </div>
     </Form>

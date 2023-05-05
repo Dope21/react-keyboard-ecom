@@ -32,8 +32,7 @@ const CreateAccount = () => {
       })
         .then(response => {
           if (response.status === 200) {
-            console.log(response.data)
-            window.location.replace('/login')
+            window.location.replace('/')
           }
         })
         .catch(error => {

@@ -16,10 +16,7 @@ type NoLabelProps = {
 type OptionProps = {
   name: string
   placeholder: string
-  options?: {
-    option: string | number
-    value: string | number
-  }
+  options?: string[]
   value: string
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
 }
@@ -91,9 +88,12 @@ export const OptionInput = ({
         onChange={onChange}
       >
         <option value="">{placeholder}</option>
-        <option value="1">aslskdf1</option>
-        <option value="2">aslskdf2</option>
-        <option value="3">aslskdf3</option>
+        {options &&
+          options.map(item => (
+            <option value={item} key={item}>
+              {item}
+            </option>
+          ))}
       </select>
     </div>
   )

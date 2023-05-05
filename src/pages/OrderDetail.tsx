@@ -1,9 +1,7 @@
-import axios from 'axios'
 import { BlackBtn } from '../components/Button'
 import { NoLabelInput } from '../components/Input'
 import { Line } from '../components/Line'
 import OrderItem from '../components/OrderItem'
-import { useState, useCallback } from 'react'
 
 type Props = {
   orderItems: any[]
@@ -67,7 +65,7 @@ const OrderDetail = ({
         </div>
         <div className="flex justify-between">
           <p className="text-slate-500">Shipping</p>
-          <p className="font-bold">9.00.-</p>
+          <p className="font-bold">10.00.-</p>
         </div>
       </div>
 
