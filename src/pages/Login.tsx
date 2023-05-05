@@ -4,6 +4,7 @@ import Form from '../components/Form'
 import { BigTitle } from '../components/Title'
 import { useState, useCallback } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
   const [inputs, setInputs] = useState({
@@ -59,8 +60,8 @@ const Login = () => {
       />
       <BigInputBtn text="Sign In" />
       <div className="flex justify-between">
-        <a href="/register">Create account</a>
-        <a href="/">Forgot password?</a>
+        <Link to="/register">Create account</Link>
+        <Link to="/">Forgot password?</Link>
       </div>
     </Form>
   )
