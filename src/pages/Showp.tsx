@@ -34,12 +34,13 @@ export function Products() {
   }, [category])
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 pt-16">
-      {items &&
-        items.map(item => (
-          <div key={item.id}>
-            <StoreItems {...item} />
-          </div>
-        ))}
+      {items && items.length > 0
+        ? items.map(item => (
+            <div key={item.id}>
+              <StoreItems {...item} />
+            </div>
+          ))
+        : 'There are currently no product in this category.'}
     </div>
   )
 }

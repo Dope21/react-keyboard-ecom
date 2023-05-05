@@ -32,6 +32,8 @@ const CreateAccount = () => {
       })
         .then(response => {
           if (response.status === 200) {
+            const email = response.data.data
+            localStorage.setItem('email', email)
             window.location.replace('/')
           }
         })
